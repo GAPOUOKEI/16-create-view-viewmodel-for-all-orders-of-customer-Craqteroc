@@ -28,9 +28,12 @@ namespace Pizza
             _customerListViewModel = RepoContainer.Container.Resolve<CustomerListViewModel>();  
             _addEditCustomerVewModel = RepoContainer.Container.Resolve<AddEditCustomerViewModel>();
 
+            _orderViewModel= RepoContainer.Container.Resolve<OrderViewModer>();
+
             _customerListViewModel.AddCustomerRequested +=NavigationToAddCustomer;
             _customerListViewModel.EditCustomerRequested += NavigationToEditCustomer;
-            _customerListViewModel.PlaceOrderRequested += NavigateToOrder;
+            //_customerListViewModel.PlaceOrderRequested += NavigateToOrder;
+            _customerListViewModel.ObservOrderCustomerRequested += NavigateToObservOrderCustomer;
            
         }
         private BindableBase _currentViewModel;
@@ -64,6 +67,16 @@ namespace Pizza
 
         }
 
+        private void NavigateToObservOrderCustomer(Customer? customer) 
+        {
+            
+            _orderViewModel.LoadOrderCustomers();
+            _orderViewModel.SelectedCustomer = customer;
+
+
+            CurrentViewModel = _orderViewModel;
+        }
+
         //открывать окно для добавления клиента
         //private void NavigationToAddCustomer(Customer cust)----------------------------
         private void NavigationToAddCustomer()
@@ -78,10 +91,11 @@ namespace Pizza
         }
 
         //окно для оформления заказа
-        private void NavigateToOrder(Customer customer)
-        {
-            _orderViewModel.Id = customer.Id;
-            CurrentViewModel = _orderViewModel;
-        }
+        //private void NavigateToOrder(Customer? customer)
+        //{
+
+        //    
+        //    CurrentViewModel = _orderViewModel;
+        //}
     }
 }

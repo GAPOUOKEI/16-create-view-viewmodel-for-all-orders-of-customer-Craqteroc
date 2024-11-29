@@ -7,6 +7,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+        <DataGrid ItemsSource="{Binding Order}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate, StringFormat={}{0:dd.MM.yyyy}}"
+                     Width="*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"
+                     Width="*"/>
+                <DataGridTextColumn Header="Статус заказа" Binding="{Binding OrderStatus.Name}"
+                     Width="*"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
     </Grid>
 </UserControl>

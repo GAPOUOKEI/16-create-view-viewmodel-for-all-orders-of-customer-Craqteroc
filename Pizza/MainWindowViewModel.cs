@@ -69,12 +69,12 @@ namespace Pizza
 
         private void NavigateToObservOrderCustomer(Customer? customer) 
         {
-            
-            _orderViewModel.LoadOrderCustomers();
-            _orderViewModel.SelectedCustomer = customer;
 
-
+            //_orderViewModel.LoadOrderCustomers();
             CurrentViewModel = _orderViewModel;
+
+            _orderViewModel.SelectedCustomer = customer;
+            _orderViewModel.LoadOrderCustomers();
         }
 
         //открывать окно для добавления клиента

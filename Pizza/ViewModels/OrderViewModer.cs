@@ -23,8 +23,7 @@ namespace Pizza.ViewModels
             LoadOrderCustomers();
         }
 
-        public ObservableCollection<Order>? Order;
-
+        
         public async Task LoadOrderCustomers()
         {
             if (SelectedCustomer == null)

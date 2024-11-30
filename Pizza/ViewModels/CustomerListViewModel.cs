@@ -22,6 +22,8 @@ namespace Pizza.ViewModels
              PlaceOrderCommand =new RelayCommand<Customer>(OnPlaceOrder);
              AddCustomerCommand = new RelayCommand(OnAddCustomer);
              EditCustomerCommand = new RelayCommand<Customer>(OnEditCustomer);
+             ObservOrderCustomerCommand = new RelayCommand<Customer>(OnObservOrderCustomer);
+
              ClearSearchInput = new RelayCommand(OnClearSearch);
          }
     
@@ -68,11 +70,14 @@ namespace Pizza.ViewModels
          public RelayCommand<Customer> PlaceOrderCommand { get; private set; }
          public RelayCommand AddCustomerCommand { get; private set; }
          public RelayCommand<Customer> EditCustomerCommand { get; private set; }
+
+         public RelayCommand<Customer> ObservOrderCustomerCommand { get; private set; }
          public RelayCommand ClearSearchInput {  get; private set; }
         
          public event Action<Customer> PlaceOrderRequested = delegate { };
          public event Action AddCustomerRequested = delegate { };
          public event Action<Customer> EditCustomerRequested = delegate { }; 
+        public event Action<Customer> ObservOrderCustomerRequested = delegate { };
         
          private void OnPlaceOrder(Customer customer)
          {
@@ -82,12 +87,18 @@ namespace Pizza.ViewModels
          private void OnAddCustomer()
          {
             AddCustomerRequested?.Invoke();
-        }
+         }
         
          private void OnEditCustomer(Customer customer)
          {
              EditCustomerRequested(customer);
          }
+
+        private void OnObservOrderCustomer(Customer customer)
+        {
+            ObservOrderCustomerRequested(customer);
+        }
+
         
          private void OnClearSearch()
          {
